@@ -1,0 +1,10 @@
+<script>
+  class Server {
+    static run(fxName, callback, errHandler, param = null) {
+      google.script.run
+        .withSuccessHandler(callback)
+        .withFailureHandler(errHandler)
+        [fxName](param);
+    }
+  }
+</script>

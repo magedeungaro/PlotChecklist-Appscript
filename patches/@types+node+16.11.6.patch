@@ -1,0 +1,13 @@
+diff --git a/node_modules/@types/node/globals.d.ts b/node_modules/@types/node/globals.d.ts
+index ae974db..85e6d35 100755
+--- a/node_modules/@types/node/globals.d.ts
++++ b/node_modules/@types/node/globals.d.ts
+@@ -25,7 +25,7 @@ interface RequireResolve extends NodeJS.RequireResolve { }
+ interface NodeModule extends NodeJS.Module { }
+ 
+ declare var process: NodeJS.Process;
+-declare var console: Console;
++//declare var console: Console;
+ 
+ declare var __filename: string;
+ declare var __dirname: string;

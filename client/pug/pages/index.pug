@@ -1,0 +1,92 @@
+include ../_mixins.pug
+
+doctype html
+html
+  
+  include ../components/_header.pug
+
+  body#mat2
+    main
+      .container
+        include ./../components/_logo.pug 
+
+        h1 Checklist Áreas GP
+
+        .row
+          .input-field.col.s12
+            p Matrícula:
+            input(type="text")#username.validate
+
+          .input-field.col.s12
+            p Gestor:
+            input(disabled, type="text")#gestor.validate
+
+        .row
+          .input-field.col.s12
+            p Entre a fazenda:
+              span.pink_ *
+
+            select#area
+              option(value="0", selected) Entre seu username
+
+        
+        .row#insertNConf
+          h2 Pendências da Área
+
+          .input-field.col.s12
+            p Categoria/Estrutura
+              span.pink_ *
+            
+            select#acao
+           
+          .input-field.col.s12
+            p Não-Conformidade(s)
+              span.pink_ *
+            
+            select(multiple)#nconf
+              option(value="0", selected) Entre a categoria
+
+          .input-field.col.s12
+            p Localização (Nº Talhão, APP etc)
+              span.pink_ *
+            
+            input(type="text")#talhao
+
+          .input-field.col.s12
+            p Observação
+
+            textarea(rows="1")#obs.materialize-textarea.obs
+
+          h6
+            b *
+            span Campos obrigatórios para computar a pendência          
+                   
+        .row.enviar
+          +button("clrBtn","clear","Limpar")      ]
+
+        .row.enviar
+          +button("btn","send","Enviar")
+
+        .row#acompanhamentoArea
+          div
+            h4 Últimos envios: 
+
+            table.striped.highlight.responsive-table
+              thead
+                tr
+                  th Gestor
+                  th Área
+                  th Categoria 
+                  th Não conformidade 
+                  th Talhão
+                  th Observação
+
+              tbody#lastArea
+             
+  include ../components/_footer.pug 
+
+  include ../components/_loading.pug 
+
+  include ../components/_topButton.pug 
+
+  include ../components/_scripts.pug 

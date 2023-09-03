@@ -1,0 +1,80 @@
+@import "var";
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #737373;
+}
+
+/*Declaração de Seleção*/
+
+::-moz-selection {
+  /* Code for Firefox */
+  background: $purple;
+  color: white;
+}
+
+::selection {
+  background: $purple;
+  color: white;
+}
+
+/*caret color*/
+* {
+  caret-color: $purple;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+  word-break: keep-all;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+  color: $darkGrey;
+}
+
+h6 {
+  color: $pink;
+}
+
+main {
+  padding-top: 3rem;
+}
+
+.container {
+  margin: 0 auto;
+  width: 80%;
+  clear: both;
+}
+
+footer {
+  text-align: center;
+  background-color: $purple;
+  color: white;
+  padding: 15px 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0 !important;
+}
+
+input:disabled {
+  background-color: transparent;
+}

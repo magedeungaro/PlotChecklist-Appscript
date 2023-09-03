@@ -1,0 +1,40 @@
+<script>
+  class El {
+    constructor(id) {
+      this._id = id;
+    }
+
+    object() {
+      const id = this._id;
+
+      const el = document.getElementById(id);
+
+      return el;
+    }
+
+    prop(prop) {
+      return this.object()[prop].toString();
+    }
+
+    setProp(prop, value) {
+      this.object()[prop] = value;
+    }
+
+    clear() {
+      this.setProp("innerHTML", "");
+      this.setProp("value", "");
+    }
+
+    addEvent(evt, fx) {
+      const el = this.object();
+      el.addEventListener(evt, fx, false);
+    }
+
+    static clearInputs(ids) {
+      ids.map((id) => {
+        const el = new El(id);
+        el.clear();
+      });
+    }
+  }
+</script>

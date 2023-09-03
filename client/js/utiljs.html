@@ -1,0 +1,56 @@
+<script>
+  class Utils {
+    static loading(boolean = false) {
+      const el = new El("loading").object();
+
+      if (boolean) {
+        el.classList.remove("hidden");
+
+        return;
+      }
+
+      el.classList.add("hidden");
+    }
+
+    static dataHasher(array) {
+      let temp = {};
+
+      array.map((v) => {
+        temp[v] = null;
+      });
+
+      return temp;
+    }
+
+    static hasEmptyValue(ids) {
+      const arr = ids.map((id) => {
+        return new El(id).prop("value");
+      });
+
+      return arr.includes("") || arr.includes(0);
+    }
+
+    static hasEmpty(ids) {
+      return ids.includes("") || ids.includes(0);
+    }
+
+    static isEmpty(value) {
+      if (Array.isArray(value)) {
+        return value[0] == "" || null || undefined;
+      } else if (typeof value == "string") {
+        return value == "";
+      }
+    }
+
+    static toast(msg, color = null) {
+      let classes = "pink darken-1";
+
+      if (color) classes = `${color}`;
+
+      M.toast({
+        html: msg,
+        classes: classes,
+      });
+    }
+  }
+</script>

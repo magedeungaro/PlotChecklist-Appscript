@@ -1,0 +1,40 @@
+@import "var";
+
+@media screen and (max-width: 835px) {
+  #btn,
+  #clrBtn {
+    width: 100%;
+  }
+
+  .logo {
+    position: relative;
+    width: 5rem;
+  }
+
+  .container {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.7rem;
+    }
+  }
+
+  .imgContainer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #btn,
+  #clrBtn {
+    i {
+      display: none !important;
+    }
+  }
+
+  #topBtn {
+    outline-offset: 0px;
+    bottom: 10px;
+    right: 10px;
+  }
+}

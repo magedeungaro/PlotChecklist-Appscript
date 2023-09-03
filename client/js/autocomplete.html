@@ -1,0 +1,21 @@
+<script>
+  class Autocomplete extends El {
+    constructor(id) {
+      super(id);
+    }
+
+    init() {
+      M.Autocomplete.init(this.object());
+    }
+
+    instance() {
+      const instance = M.Autocomplete.getInstance(this.object());
+
+      return instance;
+    }
+
+    update(data) {
+      this.instance().updateData(data);
+    }
+  }
+</script>

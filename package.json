@@ -1,0 +1,30 @@
+{
+  "name": "clasp_checklist",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "git": "bash scripts/pu.sh",
+    "css": "bash scripts/style.sh",
+    "pug": "pug ./client/pug/pages -o ./client/html -P",
+    "copy": "bash scripts/copyFile.sh",
+    "catServer": "bash scripts/t.sh",
+    "process": "npm run pug && npm run css && npm run catServer && tsc && npm run copy",
+    "postinstall": "patch-package"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/materialize-css": "^1.0.11",
+    "lodash": "^4.17.21",
+    "materialize-css": "^1.0.0",
+    "parcel": "^2.0.0",
+    "patch-package": "^6.4.7",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0",
+    "@types/google-apps-script-oauth2": "^38.0.0",
+    "@types/lodash": "^4.14.176"
+  }
+}

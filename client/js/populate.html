@@ -1,0 +1,97 @@
+<script>
+  class Populate {
+    static categories() {
+      Server.run(
+        "allCategories",
+        (res) => {
+          const categories = new Select("acao");
+          const msg = "Entre uma categoria";
+
+          categories.setOptions({
+            options: res,
+            msg: msg,
+            firstOptionDisabled: false,
+          });
+
+          Utils.loading(false);
+        },
+        (e) => {
+          console.log(e);
+
+          Utils.toast(
+            "Ops, deu erro. Contate o suporte sobre o erro #allCategories."
+          );
+
+          Utils.loading(false);
+        }
+      );
+    }
+
+    static nonCompliances(id) {
+      const param = { id: id };
+
+      Server.run(
+        "nonCompliances",
+
+        (res) => {
+          const nonCompliances = new Select("nconf");
+          const msg = "Escolha uma não conformidade";
+
+          nonCompliances.resetOptions({
+            options: res,
+            msg: msg,
+            firstOptionDisabled: true,
+          });
+
+          Utils.loading(false);
+        },
+
+        (e) => {
+          console.log(e);
+
+          Utils.toast(
+            "Ops, deu erro. Contate o suporte sobre o erro #nonCompliances."
+          );
+
+          Utils.loading(false);
+        },
+        param
+      );
+    }
+
+    static processManagerInfo(username) {
+      const param = { username: username };
+
+      Server.run(
+        "getProcessManagerInfo",
+
+        ({ name, areas }) => {
+          const manager = new El("gestor");
+          manager.setProp("value", name);
+
+          const managerAreas = new Select("area");
+          const msg = "Entre uma área";
+
+          managerAreas.resetOptions({
+            options: areas,
+            msg: msg,
+            firstOptionDisabled: true,
+          });
+
+          Utils.loading(false);
+        },
+
+        (e) => {
+          console.log(e);
+
+          Utils.toast(
+            "Ops, deu erro. Contate o suporte sobre o erro #populateProcessManagerInfo."
+          );
+
+          Utils.loading(false);
+        },
+        param
+      );
+    }
+  }
+</script>

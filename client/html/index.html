@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head id="mat"><?!= include("css"); ?>
+    <base target="_top">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito&amp;display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  </head>
+  <body id="mat2">
+    <main>
+      <div class="container">
+        <div class="imgContainer"><img class="logo" src="https://drive.google.com/uc?export=download&amp;id=1eSrobCe80X0O4MsH7kWQ6k7ggIFwj8Ii" alt="logo"></div>
+        <h1>Checklist Áreas GP</h1>
+        <div class="row">
+          <div class="input-field col s12">
+            <p>Matrícula:</p>
+            <input class="validate" type="text" id="username">
+          </div>
+          <div class="input-field col s12">
+            <p>Gestor:</p>
+            <input class="validate" disabled type="text" id="gestor">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <p>Entre a fazenda:<span class="pink_">*</span></p>
+            <select id="area">
+              <option value="0" selected>Entre seu username</option>
+            </select>
+          </div>
+        </div>
+        <div class="row" id="insertNConf">
+          <h2>Pendências da Área</h2>
+          <div class="input-field col s12">
+            <p>Categoria/Estrutura<span class="pink_">*</span></p>
+            <select id="acao"></select>
+          </div>
+          <div class="input-field col s12">
+            <p>Não-Conformidade(s)<span class="pink_">*</span></p>
+            <select multiple id="nconf">
+              <option value="0" selected>Entre a categoria</option>
+            </select>
+          </div>
+          <div class="input-field col s12">
+            <p>Localização (Nº Talhão, APP etc)<span class="pink_">*</span></p>
+            <input type="text" id="talhao">
+          </div>
+          <div class="input-field col s12">
+            <p>Observação</p>
+            <textarea class="materialize-textarea obs" rows="1" id="obs"></textarea>
+          </div>
+          <h6><b>*</b><span>Campos obrigatórios para computar a pendência          </span></h6>
+        </div>
+        <div class="row enviar">
+          <button class="waves-effect waves-light btn-small" id="clrBtn"><i class="material-icons left">clear</i><span>Limpar</span></button>
+        </div>
+        <div class="row enviar">
+          <button class="waves-effect waves-light btn-small" id="btn"><i class="material-icons left">send</i><span>Enviar</span></button>
+        </div>
+        <div class="row" id="acompanhamentoArea">
+          <div>
+            <h4>Últimos envios: </h4>
+            <table class="striped highlight responsive-table">
+              <thead>
+                <tr>
+                  <th>Gestor</th>
+                  <th>Área</th>
+                  <th>Categoria </th>
+                  <th>Não conformidade </th>
+                  <th>Talhão</th>
+                  <th>Observação</th>
+                </tr>
+              </thead>
+              <tbody id="lastArea"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <footer>
+    <div class="container"></div><span>Copyright &copy; 2021 <b>Magê</b></span>
+  </footer>
+  <div class="loading hidden" id="loading">
+    <div class="container">
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    </div>
+  </div>
+  <button onclick="topFunction()" title="Go to top" id="topBtn"><i class="material-icons">arrow_upward</i></button><?!= include("serverjs"); ?>
+<?!= include("element"); ?>
+<?!= include("utiljs"); ?>
+<?!= include("select"); ?>
+<?!= include("autocomplete"); ?>
+<?!= include("callers"); ?>
+<?!= include("populate"); ?>
+<?!= include("scroll"); ?>
+<?!= include("main"); ?>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</html>

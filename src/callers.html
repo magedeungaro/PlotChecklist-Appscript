@@ -1,0 +1,154 @@
+<script>
+  const addPopulateNonCompliances = () => {
+    const categories = new Select("acao");
+
+    categories.addEvent("change", () => {
+      const categoryId = parseInt(categories.prop("value"));
+
+      Utils.loading(true);
+
+      Populate.nonCompliances(categoryId);
+    });
+  };
+
+  const addPopulateProcessManagerInfo = () => {
+    const processManagUsername = new El("username");
+
+    processManagUsername.addEvent("input", () => {
+      const username = processManagUsername.prop("value");
+
+      if (username.length !== 8) return;
+
+      Utils.loading(true);
+
+      Populate.processManagerInfo(username);
+    });
+  };
+
+  const addClearInputs = () => {
+    const clearButton = new El("clrBtn");
+
+    clearButton.addEvent("click", () => {
+      const ids = ["talhao", "obs"];
+
+      El.clearInputs(ids);
+    });
+  };
+
+  const logVisit = (res) => {
+    let log = res.map((v) => {
+      return `<td>${v}</td>`;
+    });
+
+    let logElement = document.getElementById("lastArea");
+
+    logElement.innerHTML += `<tr>${log.join("")}</tr>`;
+  };
+
+  const sendingVisit = () => {
+    let toastMsg = "Enviando visita";
+    let toastClass = "green";
+
+    M.toast({
+      html: toastMsg,
+      classes: toastClass,
+      completeCallback: () => {
+        Utils.loading(true);
+      },
+    });
+  };
+
+  const saveVisit = () => {
+    const username = new El("username").prop("value").toLowerCase();
+    const area = new Select("area");
+
+    const areaId = parseInt(area.prop("value"));
+
+    const notAValidVisit = username == "" && areaId == 0;
+
+    if (notAValidVisit) {
+      Utils.toast("Entre o username e a área a registrar");
+
+      Utils.loading(false);
+      return;
+    }
+
+    const obs = new El("obs").prop("value").toString();
+
+    const category = new Select("acao");
+    const categoryId = parseInt(category.prop("value"));
+
+    const nonCompliances = new Select("nconf").instance().getSelectedValues();
+
+    const nonCompliancesIds = nonCompliances.map((v) => {
+      return parseInt(v);
+    });
+
+    const plot = new El("talhao").prop("value").toString();
+
+    const hasCategory = !categoryId == 0;
+
+    let param = {
+      //processManagUsername: username,
+      areaId: areaId,
+      obs: obs,
+      categoryId: categoryId,
+      nonCompliancesIds: nonCompliancesIds,
+      plot: plot,
+    };
+
+    console.log(param);
+
+    if (hasCategory) {
+      const hasPlot = !plot == "";
+      const hasNonCompliances = !Utils.hasEmpty(nonCompliancesIds);
+
+      const notAValidNonCompliance = !hasNonCompliances || !hasPlot;
+
+      if (notAValidNonCompliance) {
+        Utils.toast(
+          "Entre todas as informações da não conformidade ou selecione categoria 'nenhuma'"
+        );
+
+        Utils.loading(false);
+
+        return;
+      }
+    }
+
+    sendingVisit();
+
+    Server.run(
+      "saveVisit",
+      (log) => {
+        logVisit(log);
+
+        console.log(log);
+
+        let toastMsg = "Visita enviada com sucesso";
+        let toastClass = "green";
+
+        Utils.toast(toastMsg, toastClass);
+
+        Utils.loading();
+      },
+      (e) => {
+        console.log(e);
+
+        Utils.toast("Ops, deu erro. Contate o suporte sobre o erro #saveVisit");
+      },
+      param
+    );
+
+    Utils.loading(false);
+  };
+
+  const addSaveVisit = () => {
+    const saveButton = new El("btn");
+
+    saveButton.addEvent("click", () => {
+      Utils.loading(true);
+      saveVisit();
+    });
+  };
+</script>

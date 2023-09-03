@@ -1,0 +1,26 @@
+<script>
+  document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+      const nonCompliances = new Select("nconf");
+      const area = new Select("area");
+
+      Utils.loading(true);
+
+      Populate.categories();
+
+      nonCompliances.init();
+
+      area.init();
+
+      addPopulateProcessManagerInfo();
+
+      addPopulateNonCompliances();
+
+      addClearInputs();
+
+      addSaveVisit();
+    },
+    false
+  );
+</script>

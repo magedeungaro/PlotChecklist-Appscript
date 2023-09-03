@@ -1,0 +1,5 @@
+node_modules
+*.txt
+.parcel-cache
+scripts/teste.sh
+tsconfig.json

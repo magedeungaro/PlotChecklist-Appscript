@@ -1,0 +1,41 @@
+<script>
+  class Select extends El {
+    constructor(id) {
+      super(id);
+    }
+
+    init() {
+      M.FormSelect.init(this.object());
+    }
+
+    instance() {
+      const instance = M.FormSelect.getInstance(this.object());
+
+      return instance;
+    }
+
+    setOptions({ options, msg, firstOptionDisabled }) {
+      const firstOption = `<option value="0" disabled="${firstOptionDisabled}" selected>${msg}</option>`;
+
+      let htmlOptions = options.map((opt) => {
+        return `<option value="${opt.id}">${opt.desc}</option>`;
+      });
+
+      htmlOptions.unshift(firstOption);
+
+      this.setProp("innerHTML", htmlOptions.join(""));
+
+      this.init();
+    }
+
+    resetOptions({ options, msg, firstOptionDisabled }) {
+      this.instance().destroy();
+
+      this.clear();
+
+      this.setOptions({ options, msg, firstOptionDisabled });
+
+      this.init();
+    }
+  }
+</script>

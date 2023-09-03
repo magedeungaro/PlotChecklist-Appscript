@@ -1,0 +1,9 @@
+mixin button_link(link, id, icon, text)
+  .row.enviar
+    a(href=link)
+      +button(id, icon, text)
+
+mixin button(id, icon, text)
+  button(id=id).waves-effect.waves-light.btn-small
+    i.material-icons.left #{icon}
+    span= text
